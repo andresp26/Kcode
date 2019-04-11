@@ -6,8 +6,17 @@ import { LoginComponent } from './Pages/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './Pages/home/home.component';
 import { FooterComponent } from './Shared/footer/footer.component';
+<<<<<<< HEAD
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from 'angularfire2';
+=======
 import { GruposComponent } from './Pages/grupos/grupos.component';
+<<<<<<< HEAD
 import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
+=======
+>>>>>>> 9fb4dfada048a0c46598fe163ccaddbeb140301c
+>>>>>>> f08d1c1d1de3f542079f09fbb533cfa424905eea
 
 @NgModule({
   declarations: [
@@ -20,7 +29,9 @@ import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
