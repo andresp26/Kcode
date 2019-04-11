@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './Pages/home/home.component';
 import { FooterComponent } from './Shared/footer/footer.component';
 import { GruposComponent } from './Pages/grupos/grupos.component';
+import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { GruposComponent } from './Pages/grupos/grupos.component';
     LoginComponent,
     HomeComponent,
     FooterComponent,
-    GruposComponent
+    GruposComponent,
+    CrearGrupoComponent
   ],
   imports: [
     BrowserModule,
