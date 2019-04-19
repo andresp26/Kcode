@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthGitService } from '../../service/auth-git.service';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              public authGitService: AuthGitService
+    ) { }
 
   ngOnInit() {
   }
 
+  login() {
+   this.authGitService.signIn();
+   this.router.navigate(['/login']);
+  }
 
   ValidaUsuario() {
     this.router.navigate(['/Inicio']);

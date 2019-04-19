@@ -1,21 +1,33 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore,} from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGitService {
-  
-  fire: any;
-  gitProvider: any;
-  constructor(_fireStore: AngularFirestore) { 
-  this.fire = _fireStore;
-  this.gitProvider = this.fire.auth.GithubAuthProvider();
+
+  constructor(public fbAuth: AngularFireAuth,
+              private router: Router,
+    ) { }
+
+  signIn() {
+    const provider = new firebase.auth.GithubAuthProvider();
+    provider.addScope('repo');
+    console.log('Estoy en el provider');
+    this.fbAuth.auth.signInWithPopup(provider)
+    .then(result => {
+      this.router.navigate(['/Inicio']);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
-  
 
 
-  
-};
+  signOut() {
+  return this.fbAuth.auth.signOut();
+}
+
+}

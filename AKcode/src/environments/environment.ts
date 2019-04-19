@@ -11,7 +11,6 @@ export const environment = {
       projectId: "kcode-b0bc7",
       storageBucket: "kcode-b0bc7.appspot.com",
       messagingSenderId: "711237909634"
-  
     }
   };
 
