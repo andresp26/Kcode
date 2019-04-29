@@ -12,15 +12,18 @@
             </div>             
         </div>
         <div class="col-md-6">
-                <div class="card" *ngFor="let obj of grupos">
-                        <div class="card-header">
-                          Titulo : {{obj.Nombre}}
-                        </div>
-                        <div class="card-body">
-                          <h5 class="card-title">Descripcion</h5>
-                          <p class="card-text"> {{obj.Descripcion}} </p>                          
-                        </div>
-                      </div>
+            <div class="form-group"  *ngFor="let obj of grupos">
+                    <div class="card">
+                            <div class="card-header  text-white bg-primary">
+                              Titulo : {{obj.Nombre}}
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">Descripcion</h5>
+                              <p class="card-text"> {{obj.Descripcion}} </p> 
+                              <a href="#" class="btn btn-primary">Ingresar</a>                         
+                            </div>
+                    </div>
+            </div>
         </div>
     </div>
    

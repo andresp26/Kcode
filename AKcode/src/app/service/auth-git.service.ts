@@ -27,9 +27,10 @@ export class AuthGitService {
     .then((result) => {
        localStorage.setItem('Usuario', result.additionalUserInfo.username);
        localStorage.setItem('Email', result.user.email);
-      // this.token = result.credential.toJSON();
+       this.token = result.credential.toJSON();
+       localStorage.setItem('Token', this.token.oauthAccessToken);
       // console.log('usuario en el servicio', this.token.oauthAccessToken);
-      this.router.navigate(['/Inicio']);
+       this.router.navigate(['/Inicio']);
       return result;
     })
     .catch(err => {
@@ -42,7 +43,7 @@ export class AuthGitService {
   }
 
   getUserData() {
-    return this.http.get<any>(`${ this.urlDatosUser }${ this.token.oauthAccessToken }`);
+    return this.http.get<any>(`${ this.urlDatosUser }${ localStorage.getItem('Token') }`);
   }
 
   getReposUser(userLogin: string) {

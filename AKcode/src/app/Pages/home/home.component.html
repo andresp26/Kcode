@@ -27,11 +27,11 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="h6 text-muted">Seguidores</div>
-                            <div class="h5">{{user.followers}}</div>
+                            <div class="h6 text-muted">{{seguidores}}</div>
                         </li>
                         <li class="list-group-item">
                             <div class="h6 text-muted">Seguidos</div>
-                            <div class="h5">{{user.following}}</div>
+                            <div class="h6 text-muted">{{seguidos}}</div>
                         </li>
                         <li class="list-group-item"><a routerLink="/grupos"> Mis Grupos</a></li>
                         <li class="list-group-item"><a routerLink="/grupos"> Grupos</a></li>
@@ -51,10 +51,10 @@
                                 <div class="mr-2">
                                     <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                                 </div>
-                                <div class="ml-2">
-                                    <p>{{i}}</p>
-                                    <div class="h5 m-0">{{repo.name}}</div>
-                                    <div class="h7 text-muted">{{repo.language}}</div>
+                                <div class="ml-2">                                    
+                                    <div class="h5 m-0">Nombre Repositorio: {{repo.name}}</div>
+                                    <div class="h7 text-muted">{{repo.full_name}}</div>
+                                    <div class="h7 text-muted">Url : {{repo.svn_url}}</div>
                                 </div>
                             </div>
                             <div>
@@ -64,15 +64,15 @@
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
                                         <div class="h6 dropdown-header">{{repo.description}}</div>
-                                        <a class="dropdown-item" href="{{repo.git_url}}">Ir al repositorio</a>
+                                        <a class="dropdown-item" target="_blank" href="{{repo.svn_url}}">Ir al repositorio</a>
             
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="card-body">
+                </div>
+                    <!-- <div class="card-body">
                         <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
                         <a class="card-link" href="#">
                             <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
@@ -87,8 +87,8 @@
                         <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
                         <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
                         <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-                    </div>
-                </div>
+                    </div> -->
+               
                 <!-- Post /////-->
 
             </div>
