@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-  this.authGitService.signIn();
-   this.router.navigate(['/conectando']);
+    this.authGitService.signIn();
+    this.router.navigate(['/conectando']);
   }
 
   ValidaUsuario() {

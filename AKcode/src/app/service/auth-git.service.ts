@@ -11,6 +11,7 @@ export class AuthGitService {
   user: any;
   datos: any[];
   token: any;
+  email: any;
   urlDatosUser = 'https://api.github.com/user?access_token=';
   urlReposUser = 'https://api.github.com/users/';
   loginUser: string;
@@ -20,14 +21,16 @@ export class AuthGitService {
     ) { }
 
   signIn() {
-    let provider = new firebase.auth.GithubAuthProvider();
+    const provider = new firebase.auth.GithubAuthProvider();
     provider.addScope('repo');
     this.ghAuth.auth.signInWithPopup(provider)
-    .then(result => {
-      this.user = result.user;
-      this.token = result.credential.toJSON();
-      console.log('usuario en el servicio', this.token.oauthAccessToken);
+    .then((result) => {
+       localStorage.setItem('Usuario', result.additionalUserInfo.username);
+       localStorage.setItem('Email', result.user.email);
+      // this.token = result.credential.toJSON();
+      // console.log('usuario en el servicio', this.token.oauthAccessToken);
       this.router.navigate(['/Inicio']);
+      return result;
     })
     .catch(err => {
       console.log('Se genero el siguiente error: ', err);
@@ -35,12 +38,14 @@ export class AuthGitService {
   }
 
   signOut() {
-  return this.ghAuth.auth.signOut();
-}
-getUserData() {
-  return this.http.get<any>(`${ this.urlDatosUser }${ this.token.oauthAccessToken }`);
-}
-getReposUser(userLogin: string) {
-  return this.http.get<any>(`${this.urlReposUser}${userLogin}/repos`);
-}
+    return this.ghAuth.auth.signOut();
+  }
+
+  getUserData() {
+    return this.http.get<any>(`${ this.urlDatosUser }${ this.token.oauthAccessToken }`);
+  }
+
+  getReposUser(userLogin: string) {
+    return this.http.get<any>(`${this.urlReposUser}${userLogin}/repos`);
+  }
 }
