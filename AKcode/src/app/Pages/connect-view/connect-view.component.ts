@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-connect-view',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnectViewComponent implements OnInit {
 
-  constructor() { }
+  constructor( private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    
   }
 
+  
 }

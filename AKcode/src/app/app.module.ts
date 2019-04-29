@@ -16,7 +16,15 @@ import { AngularFireModule } from '@angular/fire'; //'angularfire2';
 import { environment } from '../environments/environment';
 import { AuthGitService } from './service/auth-git.service';
 import { ConnectViewComponent } from './Pages/connect-view/connect-view.component';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+ 
+// Import your library
+import { AlertModule } from 'ngx-alerts';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { EncabezadoComponent } from './Shared/encabezado/encabezado.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,15 +33,23 @@ import { ConnectViewComponent } from './Pages/connect-view/connect-view.componen
     FooterComponent,
     GruposComponent,
     CrearGrupoComponent,
-    ConnectViewComponent
+    ConnectViewComponent,
+    EncabezadoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    HttpClientModule
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxSpinnerModule,
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
   ],
   providers: [AuthGitService],
   bootstrap: [AppComponent]

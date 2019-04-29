@@ -1,24 +1,33 @@
+<app-encabezado></app-encabezado>
+
 <div class="container">
-  <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Titulo</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre grupo">
-    
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Descripción</label>
-      <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Descripción">
-    </div>
-    <label for="exampleInputPassword1">Fondo</label>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-      <label class="custom-file-label" for="validatedCustomFile">Buscar fondo...</label>
-    </div>
     <br>
-    <br>
-    <button type="submit" class="btn btn-primary">Crear Grupo</button>
-    <br>
-    <br>
-  </form>
+    <div class="card">
+        <div class="card-header text-white bg-primary">
+          Crear Grupo
+        </div>
+        <div class="card-body">
+            <form [formGroup]="form">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Titulo</label>
+                  <input type="text" class="form-control" required formControlName="NombreGrupo" aria-describedby="emailHelp" placeholder="Nombre grupo">    
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Descripción</label>
+                  <input type="text" class="form-control" required  formControlName="DescripcionGrupo" placeholder="Descripción">
+                </div>
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file"  class="custom-file-input" multiple  id="importFile" (change)="onFileChange($event.target.files)">
+                        <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i>&nbsp; Buscar Fondo..</label>
+                      </div>
+                </div>               
+                <div class="form-group">
+                  <button type="button" (click)="GuardarGrupo()" class="btn btn-primary">Crear Grupo</button>
+                </div>                
+              </form>
+            </div>      
+      </div>  
 </div>
+<app-footer></app-footer>
 

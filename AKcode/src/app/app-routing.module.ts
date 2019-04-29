@@ -8,12 +8,13 @@ import { ConnectViewComponent } from './Pages/connect-view/connect-view.componen
 import { GruposComponent } from './Pages/grupos/grupos.component';
 
 const routes: Routes = [
-  //{ path: '', component: LoginComponent},
+    
   { path: 'login', component: LoginComponent},
   { path: 'Inicio', component: HomeComponent },
   { path: 'crearGrupo', component: CrearGrupoComponent },
   { path: 'conectando', component: ConnectViewComponent},
   { path: 'grupos', component: GruposComponent},
+  { path: 'Creargrupo', component: CrearGrupoComponent},
   { path: '**', component: LoginComponent}
 ];
 

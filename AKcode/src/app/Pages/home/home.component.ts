@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthGitService } from '../../service/auth-git.service';
 import { RouteReuseStrategy, Router } from '@angular/router';
+import { AlertService } from 'ngx-alerts';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,7 +13,7 @@ export class HomeComponent implements OnInit {
   repos: any;
   email: any;
   constructor(private authGitService: AuthGitService,
-              private router: Router
+              private router: Router, private alertService: AlertService, private spinner: NgxSpinnerService
     ) { this.user = localStorage.getItem('Usuario');
         this.email = localStorage.getItem('Email');
       // this.authGitService.getUserData().subscribe(
@@ -30,16 +32,13 @@ export class HomeComponent implements OnInit {
     }
 
   ngOnInit() {
+    
     console.log('como acceder a los datos', this.user);
     console.log(this.repos);
     this.user = localStorage.getItem('Usuario');
     this.email = localStorage.getItem('Email');
     console.log(this.authGitService.user);
-  }
-
-  signOut() {
-    this.authGitService.signOut();
-    this.router.navigate(['/login']);
+    this.alertService.success('Bienvenido');
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -47,6 +46,7 @@ export class HomeComponent implements OnInit {
     console.log('finalizo');
     this.user = localStorage.getItem('Usuario');
     this.email = localStorage.getItem('Email');
+ 
   }
 
 }

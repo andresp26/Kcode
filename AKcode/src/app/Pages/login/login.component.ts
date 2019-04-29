@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthGitService } from '../../service/auth-git.service';
+import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -10,13 +11,12 @@ import { AuthGitService } from '../../service/auth-git.service';
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
-              public authGitService: AuthGitService
-    ) { }
+              public authGitService: AuthGitService ) { }
 
   ngOnInit() {
   }
 
-  login() {
+  login() { 
     this.authGitService.signIn();
     this.router.navigate(['/conectando']);
   }
