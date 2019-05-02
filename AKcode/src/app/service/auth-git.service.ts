@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth'; //'@angular/fire/auth';//
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class AuthGitService {
   loginUser: string;
   constructor(public ghAuth: AngularFireAuth,
               private router: Router,
-              private http: HttpClient
+              private http: HttpClient, private ngZone: NgZone
     ) { }
 
   signIn() {
@@ -30,8 +30,7 @@ export class AuthGitService {
        this.token = result.credential.toJSON();
        localStorage.setItem('Token', this.token.oauthAccessToken);
       // console.log('usuario en el servicio', this.token.oauthAccessToken);
-       this.router.navigate(['/Inicio']);
-      return result;
+       this.ngZone.run(() => this.router.navigate(['/Inicio']));
     })
     .catch(err => {
       console.log('Se genero el siguiente error: ', err);

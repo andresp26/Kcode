@@ -15,7 +15,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';//'angularfire2
 import { AngularFireModule } from '@angular/fire'; //'angularfire2';
 import { environment } from '../environments/environment';
 import { AuthGitService } from './service/auth-git.service';
-import { ConnectViewComponent } from './Pages/connect-view/connect-view.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
  
 // Import your library
@@ -25,6 +24,7 @@ import { EncabezadoComponent } from './Shared/encabezado/encabezado.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { GrupoComponent } from './Pages/grupo/grupo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,8 +33,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     FooterComponent,
     GruposComponent,
     CrearGrupoComponent,
-    ConnectViewComponent,
-    EncabezadoComponent
+    EncabezadoComponent,
+    GrupoComponent
   ],
   imports: [
     BrowserModule,

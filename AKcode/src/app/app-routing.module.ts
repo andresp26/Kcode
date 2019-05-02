@@ -4,16 +4,16 @@ import { LoginComponent } from './Pages/login/login.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './Pages/home/home.component';
 import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
-import { ConnectViewComponent } from './Pages/connect-view/connect-view.component';
 import { GruposComponent } from './Pages/grupos/grupos.component';
+import { GrupoComponent } from './Pages/grupo/grupo.component';
 
 const routes: Routes = [
 
   { path: 'login', component: LoginComponent},
   { path: 'Inicio', component: HomeComponent },
   { path: 'crearGrupo', component: CrearGrupoComponent },
-  { path: 'conectando', component: ConnectViewComponent},
   { path: 'grupos', component: GruposComponent},
+  { path: 'grupo/:id', component: GrupoComponent },
   { path: 'Creargrupo', component: CrearGrupoComponent},
   { path: '**', component: LoginComponent}
 ];

@@ -3,6 +3,8 @@ import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
 import {AngularFireStorage} from 'angularfire2/storage';
 import { Grupo } from '../Models/Grupo.class';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Publicacion } from '../Models/Publicacion.class';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,10 +15,21 @@ export class GrupoService {
               private angularFireStorage: AngularFireStorage) { }
 
   getAll(): Observable<any[]> {
-    return this.angularFireDataBase.list('/grupos').valueChanges();
+    return this.angularFireDataBase.list('/grupos').snapshotChanges().pipe(
+      map(changues => changues.map(c =>  ({Key : c.payload.key , ...c.payload.val()})))
+    );
   }
 
-  add(obj: Grupo) {
-     return this.angularFireDataBase.database.ref('/grupos').push(obj);
+  GetById(id)  {
+    return this.angularFireDataBase.object('/grupos/' + id).valueChanges();
   }
+
+  add(_grupo: Grupo) {
+     return this.angularFireDataBase.database.ref('/grupos').push(_grupo);
+  }
+
+  addPublicacion(_publicacion: Publicacion) {
+    return this.angularFireDataBase.database.ref('/comentarios').push(_publicacion);
+  }
+
 }

@@ -1,6 +1,7 @@
 export class Grupo {
-    id: number;
+    // id: number;
     Nombre: string;
     Descripcion: string;
-    Imagen: string;
+    // Imagen: string;
+    // Seguidores: number;
 }

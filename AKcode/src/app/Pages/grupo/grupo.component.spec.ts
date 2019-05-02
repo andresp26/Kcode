@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConnectViewComponent } from './connect-view.component';
+import { GrupoComponent } from './grupo.component';
 
-describe('ConnectViewComponent', () => {
-  let component: ConnectViewComponent;
-  let fixture: ComponentFixture<ConnectViewComponent>;
+describe('GrupoComponent', () => {
+  let component: GrupoComponent;
+  let fixture: ComponentFixture<GrupoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConnectViewComponent ]
+      declarations: [ GrupoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConnectViewComponent);
+    fixture = TestBed.createComponent(GrupoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,6 +3,8 @@ import { AuthGitService } from '../../service/auth-git.service';
 import { RouteReuseStrategy, Router } from '@angular/router';
 import { AlertService } from 'ngx-alerts';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { UsuarioService } from '../../service/usuario.service';
+import { Usuario } from 'src/app/Models/Usuario.class';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,19 +16,28 @@ export class HomeComponent implements OnInit {
   email: any;
   seguidores = 0;
   seguidos = 0;
-  constructor(private authGitService: AuthGitService,
+  constructor(private authGitService: AuthGitService, private _ususervice: UsuarioService,
               private router: Router, private alertService: AlertService, private spinner: NgxSpinnerService
     ) {  }
 
   ngOnInit() {
-    console.log('como acceder a los datos', this.user);
-    console.log(this.repos);
     this.user = localStorage.getItem('Usuario');
     this.email = localStorage.getItem('Email');
-    console.log(this.authGitService.user);
-    this.alertService.success('Bienvenido');
     this.ConsultarRepositorios();
-    this.InformacionUsurio();
+    this.InformacionUsurio();    
+    this.spinner.show();
+    this._ususervice.GetById(this.user).pipe().subscribe(x =>  {
+      if (!x) {
+        const usu: Usuario = {
+          username : this.user,
+          email: this.email,
+          fechaingreso : new Date().toJSON().toString()
+       };
+       this.spinner.hide();
+       this._ususervice.add(usu);
+       this.alertService.success('Bienvenido!!');
+     }
+    });
   }
 
 
@@ -61,14 +72,4 @@ export class HomeComponent implements OnInit {
           }
     );
   }
-
-
-  // tslint:disable-next-line:use-life-cycle-interface
-  ngAfterViewInit() {
-    console.log('finalizo');
-    this.user = localStorage.getItem('Usuario');
-    this.email = localStorage.getItem('Email');
- 
-  }
-
 }

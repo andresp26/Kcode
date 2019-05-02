@@ -1,36 +1,56 @@
 <app-encabezado></app-encabezado>
 
-<div class="container-fluid">
+<div class="container-fluid gedf-wrapper">
     <div class="form-group">
     </div>
     <div class="row">
-        <div class="col-md-2">
-            <div class="card gedf-card">
-                <div class="card-body">
-                    <h5 class="card-title"><a routerLink="/Creargrupo" class="card-link">Crear Grupo</a></h5>                                                               
+            <div class="col-md-2">
+                    <div class="card gedf-card">
+                        <div class="card-body">
+                            <h5 class="card-title"><a routerLink="/Creargrupo" class="card-link">Crear Grupo</a></h5>                                                               
+                        </div>
+                    </div>             
                 </div>
-            </div>             
-        </div>
-        <div class="col-md-6">
-            <div class="form-group"  *ngFor="let obj of grupos">
-                    <div class="card">
-                            <div class="card-header  text-white bg-primary">
-                              Titulo : {{obj.Nombre}}
+            <div class="col-md-6 gedf-main">
+                    <div class="card gedf-card" *ngFor="let grupo of grupos; let i = index">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2">
+                                        <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                    </div>
+                                    <div class="ml-2">                                    
+                                        <div class="h5 m-0">Nombre Grupo: {{grupo.Nombre}}</div>
+                                        <div class="h7 text-muted">{{grupo.Descripcion}}</div>
+                                        <!-- <div class="h7 text-muted">Url : {{repo.svn_url}}</div> -->
+                                    </div>
+                                    
+                                </div>
+                                <div>
+                                    <div class="form-group">
+                                            <button class="button btn btn-primary" [routerLink]="['/grupo', grupo.Key ]" ><span>Ingresar</span></button>        
+                                    </div>
+                                    <!-- <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-ellipsis-h"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                            <div class="h6 dropdown-header">{{grupo.description}}</div>
+                                             <a class="dropdown-item" target="_blank" href="{{repo.svn_url}}">Ir al repositorio</a>         
+                                        </div>
+                                    </div> -->
+                                </div>
                             </div>
-                            <div class="card-body">
-                              <h5 class="card-title">Descripcion</h5>
-                              <p class="card-text"> {{obj.Descripcion}} </p> 
-                              <a href="#" class="btn btn-primary">Ingresar</a>                         
-                            </div>
+                        </div>
                     </div>
-            </div>
-        </div>
+                </div>
     </div>
-   
+ 
 </div>
 
-<!-- - \\\\\\\Post
-<div class="container">
+
+<!-- Crear publicacion -->
+<!-- <div class="container">
   <div class="card gedf-card">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
@@ -80,6 +100,6 @@
         </div>
     </div>
   </div>
-</div> -->
+</div>  -->
 
 <app-footer></app-footer>
