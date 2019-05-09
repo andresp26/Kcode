@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() { 
+  login() {
     this.authGitService.signIn();
     //this.router.navigate(['/conectando']);
   }

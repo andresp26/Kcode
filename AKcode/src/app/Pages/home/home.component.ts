@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
     this.user = localStorage.getItem('Usuario');
     this.email = localStorage.getItem('Email');
     this.ConsultarRepositorios();
-    this.InformacionUsurio();    
+    this.InformacionUsurio();
     this.spinner.show();
     this._ususervice.GetById(this.user).pipe().subscribe(x =>  {
       if (!x) {
@@ -34,8 +34,8 @@ export class HomeComponent implements OnInit {
           fechaingreso : new Date().toJSON().toString()
        };
        this.spinner.hide();
-       this._ususervice.add(usu);
-       this.alertService.success('Bienvenido!!');
+       this._ususervice.add(usu).then(function(success) {
+        this.alertService.success('Bienvenido!!'); });
      }
     });
   }
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
           },
           err => {
             console.log(err);
-          }
+        }
     );
   }
 

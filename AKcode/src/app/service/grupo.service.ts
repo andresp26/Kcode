@@ -32,4 +32,12 @@ export class GrupoService {
     return this.angularFireDataBase.database.ref('/comentarios').push(_publicacion);
   }
 
+  addSeguidor(usuario: string , id: string) {
+    return this.angularFireDataBase.list('/grupos/' + id + '/seguidores').push( { username: usuario});
+  }
+
+  GetSeguirGrupo(idgrupo: string)  {
+    return this.angularFireDataBase.object('/grupos' + idgrupo).valueChanges();
+  }
+
 }
