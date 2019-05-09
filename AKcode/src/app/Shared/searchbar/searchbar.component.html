@@ -1,0 +1,18 @@
+<div class="input-group">
+  <input type="text" 
+         class="form-control" 
+         aria-label="Recipient's username" 
+         aria-describedby="button-addon2"
+         
+         (keyup)="buscar($event)">
+  <div class="input-group-append">
+      <button class="btn btn-outline-primary" 
+              type="button" 
+              id="button-addon2">
+          <i class="fa fa-search"></i>
+      </button>
+  </div>
+</div>
+<div *ngFor="let grupo of grupos | filtro: textoBuscar: 'name'" style="position: relative; z-index: 2;" >
+  <p>{{grupo.name}}</p>
+</div>

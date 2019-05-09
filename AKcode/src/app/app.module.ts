@@ -25,6 +25,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { GrupoComponent } from './Pages/grupo/grupo.component';
+import { SearchbarModule } from './Shared/searchbar/searchbar.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { GrupoComponent } from './Pages/grupo/grupo.component';
     FormsModule,
     ReactiveFormsModule,
     NgxSpinnerModule,
-    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'})
+    AlertModule.forRoot({maxMessages: 5, timeout: 5000, position: 'right'}),
+    SearchbarModule
   ],
   providers: [AuthGitService],
   bootstrap: [AppComponent]
