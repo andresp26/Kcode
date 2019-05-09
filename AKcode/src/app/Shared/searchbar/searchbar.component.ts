@@ -14,19 +14,16 @@ export class SearchbarComponent implements OnInit {
               private spinner: NgxSpinnerService,) { }
 
   ngOnInit() {
-    this.spinner.show();
+    //this.spinner.show();
     this._serviceGrupo.getAll().pipe(
       ).subscribe(
           (data) => {
             data.forEach( infoGrupo => {
-              console.log(infoGrupo);
-              
               let grupo = { name: ''};
               grupo.name = infoGrupo['Nombre'];
-              console.log(grupo);
-            this.grupos.push(grupo);
-            this.spinner.hide();
-            }); 
+              this.grupos.push(grupo);
+            //this.spinner.hide();
+            });
           },
           err => {
             console.log(err);
@@ -36,7 +33,14 @@ export class SearchbarComponent implements OnInit {
   
   buscar( event ) {
     console.log(event);
+    
+    let numeroLetra = event.keyCode;
+    if ((numeroLetra>=65 && numeroLetra<=90)) {
     this.textoBuscar += event.key;
+    console.log(this.textoBuscar);
+    } else if ( numeroLetra === 8) {
+      this.textoBuscar = this.textoBuscar.slice(0, -1);
+    }
   }
 
 }
