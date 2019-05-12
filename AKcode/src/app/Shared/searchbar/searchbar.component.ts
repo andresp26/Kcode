@@ -1,6 +1,5 @@
 import { GrupoService } from './../../service/grupo.service';
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-searchbar',
@@ -11,19 +10,16 @@ export class SearchbarComponent implements OnInit {
   grupos: any[] = [];
   textoBuscar = '';
   vacio = false;
-  constructor(private _serviceGrupo: GrupoService,
-              private spinner: NgxSpinnerService,) { }
+  constructor(private _serviceGrupo: GrupoService) { }
 
   ngOnInit() {
-    //this.spinner.show();
     this._serviceGrupo.getAll().pipe(
       ).subscribe(
           (data) => {
             data.forEach( infoGrupo => {
-              let grupo = { name: ''};
-              grupo.name = infoGrupo['Nombre'];
+              let grupo = { };
+              grupo = infoGrupo;
               this.grupos.push(grupo);
-            //this.spinner.hide();
             });
           },
           err => {
@@ -33,7 +29,6 @@ export class SearchbarComponent implements OnInit {
   }
 
   buscar( event ) {
-    console.log(event.target.value);
     this.textoBuscar = event.target.value;
     this.vacio = true;
     if ( this.textoBuscar === '') {

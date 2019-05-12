@@ -13,12 +13,9 @@
       </button>
   </div>
 </div>
-<div class="absolute">
-  <ul *ngIf="vacio">
-    <li *ngFor="let grupo of grupos | filtro: textoBuscar: 'name'">
-        <p >{{grupo.name}}</p>
-    </li>
-  </ul>
-  
+<div *ngIf="vacio">
+<div class="absolute" >
+  <app-grupo [grupo]=grup *ngFor="let grup of grupos | filtro: textoBuscar: 'Nombre'"></app-grupo>
+</div>
 </div>
 
