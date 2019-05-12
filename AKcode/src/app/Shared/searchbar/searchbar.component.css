@@ -1,0 +1,7 @@
+.absolute {
+    position: absolute;
+    background-color: blue;
+    text-align: center;
+    color: aliceblue;
+    z-index: 3;
+}

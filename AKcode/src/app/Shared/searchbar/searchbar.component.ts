@@ -10,6 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class SearchbarComponent implements OnInit {
   grupos: any[] = [];
   textoBuscar = '';
+  vacio = false;
   constructor(private _serviceGrupo: GrupoService,
               private spinner: NgxSpinnerService,) { }
 
@@ -30,17 +31,13 @@ export class SearchbarComponent implements OnInit {
           }
         );
   }
-  
+
   buscar( event ) {
-    console.log(event);
-    
-    let numeroLetra = event.keyCode;
-    if ((numeroLetra>=65 && numeroLetra<=90)) {
-    this.textoBuscar += event.key;
-    console.log(this.textoBuscar);
-    } else if ( numeroLetra === 8) {
-      this.textoBuscar = this.textoBuscar.slice(0, -1);
+    console.log(event.target.value);
+    this.textoBuscar = event.target.value;
+    this.vacio = true;
+    if ( this.textoBuscar === '') {
+      this.vacio = false;
     }
   }
-
 }

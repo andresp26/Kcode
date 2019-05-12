@@ -3,7 +3,7 @@
          class="form-control" 
          aria-label="Recipient's username" 
          aria-describedby="button-addon2"
-         
+         id="buscar"
          (keyup)="buscar($event)">
   <div class="input-group-append">
       <button class="btn btn-outline-primary" 
@@ -13,6 +13,12 @@
       </button>
   </div>
 </div>
-<div *ngFor="let grupo of grupos | filtro: textoBuscar: 'name'"  >
-  <p>{{grupo.name}}</p>
+<div class="absolute">
+  <ul *ngIf="vacio">
+    <li *ngFor="let grupo of grupos | filtro: textoBuscar: 'name'">
+        <p >{{grupo.name}}</p>
+    </li>
+  </ul>
+  
 </div>
+
