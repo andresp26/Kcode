@@ -3,5 +3,5 @@ export class Grupo {
     Nombre: string;
     Descripcion: string;
     Imagen: string;
-    Seguidores: number;
+    seguidores: any;
 }
