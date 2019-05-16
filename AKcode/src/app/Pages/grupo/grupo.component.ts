@@ -14,6 +14,7 @@ export class GrupoComponent implements OnInit {
 
   KeyGrupo = '';
   Grupo: any;
+  CantidadSeguidores: number;
   
   constructor(private router: Router, public _serviceGrupo: GrupoService,
     private spinner: NgxSpinnerService, private route: ActivatedRoute) { }
@@ -27,6 +28,8 @@ export class GrupoComponent implements OnInit {
               this.Grupo = data;
               console.log(this.Grupo);
               this.ValidaSeguidor();
+              this.CantidadSeguidores=Object.keys(this.Grupo.seguidores).length;
+
           });
     });
   }
