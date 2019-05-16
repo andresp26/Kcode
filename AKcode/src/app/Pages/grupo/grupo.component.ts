@@ -13,16 +13,17 @@ import { map } from 'rxjs/operators';
 export class GrupoComponent implements OnInit {
 
   KeyGrupo = '';
-  Grupo = new Grupo();
+  Grupo: any;
   
   constructor(private router: Router, public _serviceGrupo: GrupoService,
     private spinner: NgxSpinnerService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.Grupo = new Grupo();
     this.route.params.subscribe(parametros => {
       this.KeyGrupo = parametros['id'];
       this._serviceGrupo.GetById(parametros['id']).pipe(
-           ).subscribe((data: Grupo) => {
+           ).subscribe((data) => {
               this.Grupo = data;
               console.log(this.Grupo);
               this.ValidaSeguidor();
@@ -31,7 +32,7 @@ export class GrupoComponent implements OnInit {
   }
 
   ValidaSeguidor() {
-    // this.Grupo.Seguidore
+    // this.Grupo.seguidores
   }
 
   AddSeguidor() {
