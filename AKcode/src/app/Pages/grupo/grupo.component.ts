@@ -18,6 +18,7 @@ export class GrupoComponent implements OnInit {
   Grupo: any;
   CantidadSeguidores: number;
   esSeguidor:boolean;
+  identificadorSeguidor:String;
   
   constructor(private router: Router, public _serviceGrupo: GrupoService,
     private spinner: NgxSpinnerService, private route: ActivatedRoute,private alertas: AlertService) { }
@@ -31,7 +32,9 @@ export class GrupoComponent implements OnInit {
               this.Grupo = data;
               console.log(this.Grupo);
               this.esSeguidor=this.ValidaSeguidor(localStorage.getItem('Usuario'),this.Grupo.seguidores);
-              console.log(this.esSeguidor);
+              if(this.esSeguidor){
+                this.identificadorSeguidor=this.ObtenerIdentificadorSeguidor(localStorage.getItem('Usuario'),this.Grupo.seguidores);
+              }
               this.CantidadSeguidores=Object.keys(this.Grupo.seguidores).length;
 
           });
@@ -45,11 +48,29 @@ export class GrupoComponent implements OnInit {
           let usuarioTemporal=seguidores[value].username;
           if(usuarioTemporal==usuario){
                existe= true;
-          }
+               
+         }
       });
       return existe;
 
   }
+
+     //Retorna el identificador de un documento seguidor de un grupo 
+      ObtenerIdentificadorSeguidor(usuario,seguidores) {
+      let keys=Object.keys(seguidores);
+      let identificador=''
+      keys.forEach(function(value){
+          let usuarioTemporal=seguidores[value].username;
+          if(usuarioTemporal==usuario){
+               identificador= value;
+               
+         }
+      });
+      return identificador;
+
+  }
+
+
 
   AddSeguidor() {
     if(!this.esSeguidor){
@@ -63,7 +84,14 @@ export class GrupoComponent implements OnInit {
   }
 
   EliminarSeguidor(){
-    this.alertas.warning('Aún no se programa esta función');
+    if(this.esSeguidor){
+      this._serviceGrupo.deleteSeguidor(this.identificadorSeguidor,this.KeyGrupo);
+      this.alertas.success('Se dejó de seguir al grupo de forma exitosa');
+
+    }else{
+      this.alertas.danger('Ya no sigues el grupo');
+
+    }
 
   }
 

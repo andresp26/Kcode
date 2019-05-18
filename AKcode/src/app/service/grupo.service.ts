@@ -40,4 +40,9 @@ export class GrupoService {
     return this.angularFireDataBase.object('/grupos' + idgrupo).valueChanges();
   }
 
+  //Hace que un usuario deje de seguir el grupo
+  deleteSeguidor(identificadorSeguidor,idGrupo){
+    return  this.angularFireDataBase.list('/grupos/' + idGrupo + '/seguidores/'+identificadorSeguidor).remove();
+  }
+
 }
