@@ -1,0 +1,74 @@
+<app-encabezado></app-encabezado>
+
+<div class="container-fluid gedf-wrapper">
+  <br><br>
+  <div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="h5">@{{IdUsuario}}</div>
+                <div class="h7 text-muted">Email: {{EmailUsuario}}</div>
+                <!-- <div class="h7">{{user.bio}}</div> -->
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a [routerLink]="['/grupo', KeyGrupo ]"> Volver al grupo {{Grupo.Nombre}}</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h3>Listado de seguidores del grupo {{Grupo.Nombre}}</h3>
+
+      <div *ngFor="let seguidor of Usuarios; let i = index">
+        <br>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-9">
+                <h5>Usuario: {{seguidor}}</h5>
+              </div>
+              <div class="col-md-3">
+
+                <button class="btn btn-primary btn-block" type="button" data-toggle="collapse" [attr.data-target]="'#'+seguidor"
+                  aria-expanded="false"  [attr.aria-controls]="seguidor">
+                  Ver repositorios
+                </button>
+
+
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <br>
+            <div class="col-md-12">
+              <div class="collapse" id="{{seguidor}}">
+                <div class="card" *ngFor="let repositorio of repos[seguidor]; let i = index">
+                  <div class="card-body">
+                       <div class="row">
+                          <div class="col-md-9">
+                              <div class="h5 m-0">Nombre Repositorio: {{repositorio}}</div>
+                              <div class="h7 text-muted">{{seguidor}}/{{repositorio}}</div>
+                              <div class="h7 text-muted">Url : https://github.com/{{seguidor}}/{{repositorio}}</div>
+                          </div>
+                          <div class="col-md-3">
+                              <a class="btn btn-success btn-block" target="_blank" href="https://github.com/{{seguidor}}/{{repositorio}}" >
+                              Ir al repositorio
+                              </a>
+            
+                            </div>
+
+                       </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
