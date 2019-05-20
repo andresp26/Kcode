@@ -13,9 +13,12 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="h6 text-muted">Seguidores</div>
-                        <div class="h5">{{Grupo.Seguidores}}</div>
+                        <div class="h5"><a href="#" [routerLink]="['/listadoSeguidores',KeyGrupo]">{{CantidadSeguidores}}</a></div>
                     </li>                
-                    <li class="list-group-item btn btn-primary btn" (click)="AddSeguidor()">Seguir</li>
+                    <li class="list-group-item" *ngIf="esSeguidor" >
+                        <button type="button" class="btn btn-danger btn btn-block" (click)="EliminarSeguidor()"> Dejar de seguir</button></li>
+                        <li class="list-group-item" *ngIf="!esSeguidor" >
+                            <input type="button" class="btn btn-primary btn btn-block" (click)="AddSeguidor()" value="Seguir"></li>
                 </ul>
             </div>
         </div>

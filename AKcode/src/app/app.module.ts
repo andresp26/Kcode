@@ -29,6 +29,7 @@ import { SearchbarModule } from './Shared/searchbar/searchbar.module';
 import { PublicacionesComponent } from './pages/publicaciones/publicaciones.component';
 import { ComentariosComponent } from './pages/comentarios/comentarios.component';
 import { PublicacionComponent } from './pages/publicacion/publicacion.component';
+import { ListadoSeguidoresComponent } from './Pages/listado-seguidores/listado-seguidores.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { PublicacionComponent } from './pages/publicacion/publicacion.component'
     GrupoComponent,
     PublicacionesComponent,
     ComentariosComponent,
-    PublicacionComponent
+    PublicacionComponent,
+    ListadoSeguidoresComponent
   ],
   imports: [
     BrowserModule,

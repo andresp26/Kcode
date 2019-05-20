@@ -45,6 +45,7 @@ export class AuthGitService {
   getUserData() {
     return this.http.get<any>(`${ this.urlDatosUser }${ localStorage.getItem('Token') }`);
   }
+ 
 
   getReposUser(userLogin: string) {
     return this.http.get<any>(`${this.urlReposUser}${userLogin}/repos`);

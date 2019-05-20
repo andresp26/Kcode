@@ -7,6 +7,8 @@ import { CrearGrupoComponent } from './Pages/crear-grupo/crear-grupo.component';
 import { GruposComponent } from './Pages/grupos/grupos.component';
 import { GrupoComponent } from './Pages/grupo/grupo.component';
 import { PublicacionComponent } from './Pages/publicacion/publicacion.component';
+import { ListadoSeguidoresComponent } from './Pages/listado-seguidores/listado-seguidores.component';
+
 
 const routes: Routes = [
 
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'grupo/:id', component: GrupoComponent },
   //{ path: 'publicacion/:id', component: PublicacionComponent },
   { path: 'Creargrupo', component: CrearGrupoComponent},
+  { path: 'listadoSeguidores/:id', component: ListadoSeguidoresComponent},
+
   { path: '**', component: LoginComponent}
 ];
 
