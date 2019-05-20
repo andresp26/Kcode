@@ -26,6 +26,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { GrupoComponent } from './Pages/grupo/grupo.component';
 import { SearchbarModule } from './Shared/searchbar/searchbar.module';
+import { PublicacionesComponent } from './pages/publicaciones/publicaciones.component';
+import { ComentariosComponent } from './pages/comentarios/comentarios.component';
+import { PublicacionComponent } from './pages/publicacion/publicacion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,10 @@ import { SearchbarModule } from './Shared/searchbar/searchbar.module';
     GruposComponent,
     CrearGrupoComponent,
     EncabezadoComponent,
-    GrupoComponent
+    GrupoComponent,
+    PublicacionesComponent,
+    ComentariosComponent,
+    PublicacionComponent
   ],
   imports: [
     BrowserModule,
