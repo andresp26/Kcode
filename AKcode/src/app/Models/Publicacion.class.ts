@@ -1,5 +1,6 @@
 export class Publicacion {
-    titulo: string;
-    Descripcion: string;
-    KeyGrupo: string;
+    username: string;
+    publicacion: string;
+    Key: string;
+    fechacreacion: Date;
 }

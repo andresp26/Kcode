@@ -28,9 +28,9 @@ export class GrupoService {
      return this.angularFireDataBase.database.ref('/grupos').push(_grupo);
   }
 
-  addPublicacion(_publicacion: Publicacion) {
-    return this.angularFireDataBase.database.ref('/comentarios').push(_publicacion);
-  }
+  // addPublicacion(_publicacion: Publicacion) {
+  //   return this.angularFireDataBase.database.ref('/comentarios').push(_publicacion);
+  // }
 
   addSeguidor(usuario: string , id: string) {
     return this.angularFireDataBase.list('/grupos/' + id + '/seguidores').push( { username: usuario});
@@ -40,8 +40,17 @@ export class GrupoService {
     return this.angularFireDataBase.object('/grupos' + idgrupo).valueChanges();
   }
 
-  //Hace que un usuario deje de seguir el grupo
-  deleteSeguidor(identificadorSeguidor,idGrupo){
+  addPublicacion(publicacion: any,  id: string) {
+    return this.angularFireDataBase.database.ref('/grupos/' + id + '/publicaciones').push(publicacion);
+  }
+
+  GetPublicaciones(idgrupo: string) : Observable<any[]>  {
+    return this.angularFireDataBase.list('/grupos/' + idgrupo + '/publicaciones/').snapshotChanges().pipe(
+      map(changues => changues.map(c =>  ({Key : c.payload.key , ...c.payload.val()})))
+    );
+  }
+
+  deleteSeguidor(identificadorSeguidor, idGrupo){
     return  this.angularFireDataBase.list('/grupos/' + idGrupo + '/seguidores/'+identificadorSeguidor).remove();
   }
 

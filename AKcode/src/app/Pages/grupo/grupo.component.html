@@ -13,6 +13,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <div class="h6 text-muted">Seguidores</div>
+                        
                         <div class="h5"><a href="#" [routerLink]="['/listadoSeguidores',KeyGrupo]">{{CantidadSeguidores}}</a></div>
                     </li>                
                     <li class="list-group-item" *ngIf="esSeguidor" >
@@ -42,7 +43,7 @@
                         <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                             <div class="form-group">
                                 <label class="sr-only" for="message">post</label>
-                                <textarea class="form-control" id="message" rows="3" placeholder="Que estas Pensando?"></textarea>
+                                <textarea class="form-control" id="message" rows="3"  [(ngModel)]="publicacion" placeholder="Que estas Pensando?"></textarea>
                             </div>
               
                         </div>
@@ -58,7 +59,7 @@
                     </div>
                     <div class="btn-toolbar justify-content-between">
                         <div class="btn-group">
-                            <button type="submit" class="btn btn-primary">Compartir</button>
+                            <button type="submit" (click)="addPublicacion()" class="btn btn-primary">Compartir</button>
                         </div>
                         <div class="btn-group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
@@ -75,9 +76,9 @@
                 </div>
               </div>
             <!-- Post /////-->
-<app-publicaciones></app-publicaciones>
-            <!--- \\\\\\\Post
-            <div class="card gedf-card">
+<!-- <app-publicaciones></app-publicaciones> -->
+       
+            <div class="card gedf-card" *ngFor="let item of publicaciones">
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="d-flex justify-content-between align-items-center">
@@ -85,8 +86,8 @@
                                 <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
                             </div>
                             <div class="ml-2">
-                                <div class="h5 m-0">J</div>
-                                <div class="h7 text-muted">Miracles Lee Cross</div>
+                                <div class="h5 m-0">{{item.username}}</div>
+                                <div class="h7 text-muted">{{item.fechacreacion | date :'short'}}</div>
                             </div>
                         </div>
                         <div>
@@ -106,28 +107,49 @@
 
                 </div>
                 <div class="card-body">
-                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+                    <!-- <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>{{tiempotranscurrido}} min ago</div> -->
                     <a class="card-link" href="#">
-                        <h5 class="card-title">Lorem ipsum dolor sit amet, consectetur adip.</h5>
+                        <h5 class="card-title">{{item.publicacion}}.</h5>
                     </a>
-
-                    <p class="card-text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor
-                        sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.
-                    </p>
+                    <div class="card" style="">
+                        <div class="card-header">
+                          Comentarios
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Cras justo odio</li>
+                          <li class="list-group-item">Dapibus ac facilisis in</li>
+                          <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                      </div>
                 </div>
                 <div class="card-footer">
                     <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
-                    <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
-                    <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                    <a href="#" class="card-link" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-comment"></i> Comment</a>
                 </div>
             </div>
-            Post /////-->
- 
-
-
-
         </div>
-        
     </div>
 </div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Comentar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="sr-only" for="message">Comentar</label>
+                <textarea class="form-control" id="message" rows="3"  [(ngModel)]="comentario" placeholder="Escribe tu comentario.."></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Comentar</button>
+        </div>
+      </div>
+    </div>
+  </div>
