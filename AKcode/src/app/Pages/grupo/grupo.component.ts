@@ -23,6 +23,9 @@ export class GrupoComponent implements OnInit {
   identificadorSeguidor: String;
   publicacion: '';
   publicaciones: Publicacion[] = [];
+  comentario: '';
+  KeyPubli = '';
+  comentarios: any[] = [];
 
   constructor(private router: Router, public _serviceGrupo: GrupoService,
     private spinner: NgxSpinnerService, private route: ActivatedRoute, private alertas: AlertService) { }
@@ -118,13 +121,48 @@ export class GrupoComponent implements OnInit {
     }
   }
 
+  PasarValor(key) {
+    this.KeyPubli = key;
+  }
+
+  addComentario() {
+    if (this.comentario === undefined) {
+      this.alertas.warning('Debe escribir un comentario');
+    }
+    if (this.esSeguidor) {
+      const com = { comentario: this.comentario , fechacreacion: Date.now() , usuario: localStorage.getItem('Usuario') };
+      this._serviceGrupo.addComentario(this.KeyGrupo, this.KeyPubli , com);
+      this.alertas.success('Comentario Agregado');
+    } else { this.alertas.warning('Debe seguir este grupo'); }
+  }
+
   consultarPublicaciones() {
+    const self = this;
     this.spinner.show();
     this._serviceGrupo.GetPublicaciones(this.KeyGrupo)
     .pipe().subscribe(
           (data: Publicacion[]) => {
           this.spinner.hide();
           this.publicaciones = data;
+          this.publicaciones.forEach(function (element, index) {
+            self.Consultarcomentarios(element.Key, index);
+          });
+          },
+          err => {
+            console.log(err);
+        }
+    );
+  }
+
+  Consultarcomentarios(idpublic, i) {
+    this.spinner.show();
+    this._serviceGrupo.GetComentarios(this.KeyGrupo, idpublic)
+    .pipe().subscribe(
+          (data) => {
+          console.log(data);
+          this.spinner.hide();
+          this.comentarios[i] = data;
+          console.log(this.comentarios);
           },
           err => {
             console.log(err);

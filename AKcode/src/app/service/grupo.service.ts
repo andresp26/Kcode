@@ -51,7 +51,18 @@ export class GrupoService {
   }
 
   deleteSeguidor(identificadorSeguidor, idGrupo){
-    return  this.angularFireDataBase.list('/grupos/' + idGrupo + '/seguidores/'+identificadorSeguidor).remove();
+    return  this.angularFireDataBase.list('/grupos/' + idGrupo + '/seguidores/' + identificadorSeguidor).remove();
+  }
+
+
+  addComentario(idgrupo,idpubli, comentario) {
+    return this.angularFireDataBase.database.ref('/grupos/' + idgrupo + '/publicaciones/' + idpubli + '/comentarios').push(comentario);
+  }
+
+  GetComentarios(idgrupo,idpubli) : Observable<any[]>  {
+    return this.angularFireDataBase.list('/grupos/' + idgrupo + '/publicaciones/' + idpubli + '/comentarios').snapshotChanges().pipe(
+      map(changues => changues.map(c =>  ({Key : c.payload.key , ...c.payload.val()})))
+    );
   }
 
 }
